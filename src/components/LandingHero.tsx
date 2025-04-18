@@ -9,21 +9,7 @@ const LandingHero = ({
   onLogin: () => void;
 }) => {
   return (
-    <header className="w-full px-4 pt-7 pb-2 relative z-20 flex flex-col items-center">
-      {/* Navbar */}
-      <nav className="w-full max-w-7xl flex items-center justify-between mx-auto mb-12">
-        <span className="font-display text-2xl font-bold text-[#1A1F2C] tracking-tight flex items-center gap-2">
-          {/* You could put a logo SVG here later */}
-          Zzenzzei
-          <span className="ml-2 bg-gradient-to-l from-[#9b87f5] to-[#1EAEDB] px-2 py-1 rounded text-xs text-white font-medium">BETA</span>
-        </span>
-        <button
-          className="flex gap-2 items-center bg-white/80 border border-[#ebeaf5] hover:bg-[#F1F0FB] transition px-5 py-2 rounded-lg text-[#9b87f5] font-bold text-sm shadow hover:scale-105"
-          onClick={onLogin}
-        >
-          <LogIn size={18} /> Login
-        </button>
-      </nav>
+    <header className="w-full px-4 pt-20 pb-2 relative z-20 flex flex-col items-center">
       {/* Hero */}
       <div className="text-center max-w-3xl mx-auto pt-10 pb-16">
         <h1 className="text-4xl sm:text-5xl md:text-6xl leading-tight font-bold bg-gradient-to-r from-[#9b87f5] via-[#1EAEDB] to-[#7E69AB] text-transparent bg-clip-text mb-5 animate-fade-in">
@@ -38,6 +24,12 @@ const LandingHero = ({
             onClick={onWaitlist}
           >
             Join the Waitlist <ArrowRight className="inline ml-2 -mt-1" size={22} />
+          </button>
+          <button
+            className="flex gap-2 items-center bg-white/80 border border-[#ebeaf5] hover:bg-[#F1F0FB] transition px-7 py-3 rounded-full text-[#9b87f5] font-bold text-lg shadow hover:scale-105"
+            onClick={onLogin}
+          >
+            <LogIn size={22} /> Login
           </button>
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs text-gray-500">

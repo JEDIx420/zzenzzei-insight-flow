@@ -1,8 +1,8 @@
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LandingHero from "../components/LandingHero";
 import WaitlistForm from "../components/WaitlistForm";
-import Navbar from "../components/Navbar";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F1F0FB] via-[#fff] to-[#D6BCFA] font-inter">
-      <Navbar />
       <LandingHero
         onWaitlist={() => document.getElementById("waitlist-form")?.scrollIntoView({behavior: "smooth"})}
         onLogin={() => navigate("/auth")}
