@@ -23,23 +23,28 @@ const Navbar = ({ user }: { user?: any }) => {
             onClick={() => navigate("/dashboard")}>
             Dashboard
           </button>
-          {/* More navigation links for Contacts, Opportunities, Campaigns, Teams, Reports, Settings */}
-          <button className="hover:text-[#9b87f5] font-medium" onClick={() => alert("Coming soon!")}>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/contacts" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/contacts")}>
             Contacts
           </button>
-          <button className="hover:text-[#9b87f5] font-medium" onClick={() => alert("Coming soon!")}>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/opportunities" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/opportunities")}>
             Opportunities
           </button>
-          <button className="hover:text-[#9b87f5] font-medium" onClick={() => alert("Coming soon!")}>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/campaigns" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/campaigns")}>
             Campaigns
           </button>
-          <button className="hover:text-[#9b87f5] font-medium" onClick={() => alert("Coming soon!")}>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/teams" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/teams")}>
             Teams
           </button>
-          <button className="hover:text-[#9b87f5] font-medium" onClick={() => alert("Coming soon!")}>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/reports" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/reports")}>
             Reports
           </button>
-          <button className="hover:text-[#9b87f5] font-medium" onClick={() => alert("Coming soon!")}>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/settings" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/settings")}>
             Settings
           </button>
         </div>
