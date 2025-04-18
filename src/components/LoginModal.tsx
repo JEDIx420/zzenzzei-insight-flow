@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -33,7 +32,7 @@ const LoginModal = ({
       email.toLowerCase().trim() === VALID_EMAIL.toLowerCase() &&
       password === VALID_PASS
     ) {
-      toast({ title: "Login successful", icon: <LogIn className="text-green-500" /> });
+      toast({ title: "Login successful" });
       setTimeout(() => {
         setLoading(false);
         setEmail("");
