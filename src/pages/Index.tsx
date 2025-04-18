@@ -1,35 +1,30 @@
-
-import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import LandingHero from "../components/LandingHero";
 import WaitlistForm from "../components/WaitlistForm";
-import LoginModal from "../components/LoginModal";
+import Navbar from "../components/Navbar";
 
 const Index = () => {
-  const [waitlistOpen, setWaitlistOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
-  // Only show the landing if not authed. For real app, use backend.
-  if (authenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-[#F1F0FB] to-[#D6BCFA] flex flex-col items-center justify-center font-inter">
-        <h1 className="text-[2.5rem] sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#9b87f5] to-[#1EAEDB] text-transparent bg-clip-text mb-4 animate-fade-in">
-          Welcome, Jay!
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">You are authenticated. 🎉</p>
-        <div className="rounded-md bg-white/90 px-6 py-4 border shadow-md">
-          <div className="text-xl font-semibold mb-3">Dashboard Placeholder</div>
-          <div className="text-gray-500">This is a quick preview for authenticated users. <br /> More actual dashboard content will appear here as we develop Zzenzzei!</div>
-        </div>
-      </div>
-    );
-  }
+  // If already logged in, redirect to dashboard
+  useEffect(() => {
+    // Use supabase directly to check session.
+    import("@/integrations/supabase/client").then(({ supabase }) => {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          navigate("/dashboard", { replace: true });
+        }
+      });
+    });
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F1F0FB] via-[#fff] to-[#D6BCFA] font-inter">
+      <Navbar />
       <LandingHero
-        onWaitlist={() => setWaitlistOpen(true)}
-        onLogin={() => setLoginOpen(true)}
+        onWaitlist={() => document.getElementById("waitlist-form")?.scrollIntoView({behavior: "smooth"})}
+        onLogin={() => navigate("/auth")}
       />
       {/* Feature/Value Section */}
       <section className="max-w-5xl mx-auto mt-12 space-y-16 px-4">
@@ -69,8 +64,7 @@ const Index = () => {
       <footer className="mt-24 py-8 text-center text-xs text-gray-400">
         &copy; {new Date().getFullYear()} Zzenzzei • Next-gen AI CRM
       </footer>
-      <WaitlistForm open={waitlistOpen} onOpenChange={setWaitlistOpen} />
-      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} onAuthenticated={() => setAuthenticated(true)} />
+      <WaitlistForm open={false} onOpenChange={() => {}} />
     </div>
   );
 };
