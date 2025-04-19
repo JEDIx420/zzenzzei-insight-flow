@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "../components/Navbar";
+import { Button } from "@/components/ui/button";
+import { DataUploadDialog } from "@/components/DataUploadDialog";
+import { Upload } from "lucide-react";
 
 const Dashboard = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [showUpload, setShowUpload] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -50,12 +54,15 @@ const Dashboard = () => {
         <h1 className="text-[2.5rem] sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#9b87f5] to-[#1EAEDB] text-transparent bg-clip-text mb-4 animate-fade-in">
           Welcome, {user?.email}!
         </h1>
-        <div className="rounded-md bg-white/90 px-6 py-4 border shadow-md">
-          <div className="text-xl font-semibold mb-3">Dashboard</div>
-          <div className="text-gray-500">You're now logged in to Zzenzzei. Use the sidebar and header navigation to access Contacts, Opportunities, Campaigns, Teams, Reports, and Settings modules as they're built out.
-          </div>
+        <div className="rounded-md bg-white/90 px-6 py-4 border shadow-md w-full max-w-xl flex flex-col gap-3">
+          <div className="text-xl font-semibold mb-2">Dashboard</div>
+          <div className="text-gray-500 mb-2">You're now logged in to Zzenzzei. Use the navigation to access modules.</div>
+          <Button variant="outline" className="flex gap-2 w-max" onClick={() => setShowUpload(true)}>
+            <Upload size={18}/> Data Upload
+          </Button>
         </div>
       </div>
+      <DataUploadDialog open={showUpload} onOpenChange={setShowUpload} />
     </div>
   );
 };

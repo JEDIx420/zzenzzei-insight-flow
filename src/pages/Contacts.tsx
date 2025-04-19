@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, User, Mail, Phone } from "lucide-react";
+import { Plus, User, Mail, Phone, Upload } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
+import { DataUploadDialog } from "@/components/DataUploadDialog";
 
 type Contact = {
   id: string;
@@ -19,6 +20,7 @@ const Contacts = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
+  const [showUpload, setShowUpload] = useState(false);
   const [newContact, setNewContact] = useState({
     first_name: "",
     last_name: "",
@@ -87,10 +89,16 @@ const Contacts = () => {
       <Navbar />
       <div className="flex justify-between items-center w-full max-w-2xl mb-4">
         <h1 className="text-4xl font-bold text-[#9b87f5]">Contacts</h1>
-        <Button variant="default" onClick={() => setShowAdd(v => !v)}>
-          <Plus size={18} /> Add Contact
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="default" onClick={() => setShowAdd(v => !v)}>
+            <Plus size={18} /> Add Contact
+          </Button>
+          <Button variant="outline" onClick={() => setShowUpload(true)}>
+            <Upload size={18}/> Bulk Upload
+          </Button>
+        </div>
       </div>
+      <DataUploadDialog open={showUpload} onOpenChange={setShowUpload} defaultType="contacts" />
       {showAdd && (
         <form className="max-w-2xl w-full bg-white rounded-lg shadow p-4 mb-6 space-y-3" onSubmit={handleAddContact}>
           <div className="flex gap-3">
