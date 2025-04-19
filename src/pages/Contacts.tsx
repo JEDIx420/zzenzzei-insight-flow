@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,10 +37,11 @@ const Contacts = () => {
       .order("created_at", { ascending: false })
       .then(({ data, error }) => {
         if (error) {
-          setError("Failed to load contacts");
+          setError("Unable to load contacts. Please check your network or backend setup!");
           setContacts([]);
         } else {
           setContacts(data || []);
+          setError(""); // Reset error on successful fetch
         }
         setLoading(false);
       });
