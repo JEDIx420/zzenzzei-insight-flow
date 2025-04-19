@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 // Can't fetch from a non-existing table. Instead, simply display empty state.
 // Add informative message for how to enable data.
@@ -18,6 +18,7 @@ const Opportunities = () => {
 
   return (
     <div className="min-h-screen py-12 bg-gradient-to-br from-[#F1F0FB] to-[#D6BCFA] flex flex-col items-center">
+      <Navbar />
       <div className="flex justify-between items-center w-full max-w-2xl mb-4">
         <h1 className="text-4xl font-bold text-[#9b87f5]">Opportunities</h1>
         <Button variant="default" disabled>

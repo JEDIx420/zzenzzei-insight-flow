@@ -15,8 +15,12 @@ const Navbar = ({ user }: { user?: any }) => {
   return (
     <nav className="w-full bg-white border-b shadow-sm flex items-center justify-between px-6 py-3">
       <div className="flex items-center gap-6">
-        <span onClick={() => navigate("/dashboard")} className="text-xl font-bold text-[#9b87f5] cursor-pointer">
-          Zzenzzei
+        <span
+          onClick={() => navigate("/dashboard")}
+          className="flex items-center gap-2 text-xl font-bold text-[#9b87f5] cursor-pointer"
+        >
+          <img src="/lovable-uploads/8ae5233c-cc59-40e1-8e14-ae788063e95e.png" alt="company logo" className="w-8 h-8 rounded-full bg-[#1EAEDB]" />
+          zzenzzei
         </span>
         <div className="hidden md:flex gap-4 items-center">
           <button className={`hover:text-[#9b87f5] transition-colors font-medium ${location.pathname === "/dashboard" ? "text-[#9b87f5]" : ""}`}
