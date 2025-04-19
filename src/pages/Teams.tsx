@@ -1,33 +1,20 @@
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+
+// Can't fetch from a non-existing table. Instead, simply display empty state.
+// Add informative message for how to enable data.
 
 type Team = {
   id: string;
   name: string;
   created_at?: string;
-  // Add fields according to your table
 };
 
 const Teams = () => {
-  const [teams, setTeams] = useState<Team[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    // Assumes a 'teams' table exists
-    supabase
-      .from("teams")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data, error }) => {
-        if (!error && data) setTeams(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  const [teams] = useState<Team[]>([]);
+  const [loading] = useState(false);
 
   return (
     <div className="min-h-screen py-12 bg-gradient-to-br from-[#F1F0FB] to-[#D6BCFA] flex flex-col items-center">
@@ -41,7 +28,8 @@ const Teams = () => {
         <div className="text-gray-500 py-10">Loading...</div>
       ) : teams.length === 0 ? (
         <div className="text-gray-400 text-center mt-16">
-          No teams yet.
+          No teams yet.<br />
+          <span className="text-xs">Enable this page by adding a <strong>teams</strong> table to your Supabase project.</span>
         </div>
       ) : (
         <div className="w-full max-w-2xl space-y-2">
@@ -57,4 +45,3 @@ const Teams = () => {
 };
 
 export default Teams;
-

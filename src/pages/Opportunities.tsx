@@ -1,33 +1,20 @@
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+
+// Can't fetch from a non-existing table. Instead, simply display empty state.
+// Add informative message for how to enable data.
 
 type Opportunity = {
   id: string;
   name: string;
   created_at?: string;
-  // Add fields as needed from your DB
 };
 
 const Opportunities = () => {
-  const [opps, setOpps] = useState<Opportunity[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    // Example: You may have an 'opportunities' table. Otherwise just show no data state.
-    supabase
-      .from("opportunities")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data, error }) => {
-        if (!error && data) setOpps(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  const [opps] = useState<Opportunity[]>([]);
+  const [loading] = useState(false);
 
   return (
     <div className="min-h-screen py-12 bg-gradient-to-br from-[#F1F0FB] to-[#D6BCFA] flex flex-col items-center">
@@ -41,11 +28,11 @@ const Opportunities = () => {
         <div className="text-gray-500 py-10">Loading...</div>
       ) : opps.length === 0 ? (
         <div className="text-gray-400 text-center mt-16">
-          No opportunities yet.
+          No opportunities yet.<br/>
+          <span className="text-xs">Enable this page by adding an <strong>opportunities</strong> table to your Supabase project.</span>
         </div>
       ) : (
         <div className="w-full max-w-2xl space-y-2">
-          {/* List your opportunities here */}
           {opps.map(opp => (
             <div key={opp.id} className="bg-white rounded shadow p-4">
               {opp.name}
@@ -58,4 +45,3 @@ const Opportunities = () => {
 };
 
 export default Opportunities;
-
