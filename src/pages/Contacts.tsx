@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, User, Mail, Phone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import Navbar from "@/components/Navbar";
 
 type Contact = {
   id: string;
@@ -29,7 +30,6 @@ const Contacts = () => {
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState("");
 
-  // Fetch all contacts on mount
   useEffect(() => {
     setLoading(true);
     supabase
@@ -51,13 +51,11 @@ const Contacts = () => {
     e.preventDefault();
     setAdding(true);
     setError("");
-    // First name and last name required
     if (!newContact.first_name.trim() || !newContact.last_name.trim()) {
       setError("First & Last name required");
       setAdding(false);
       return;
     }
-    // Add to supabase
     const { data, error } = await supabase
       .from("contacts")
       .insert([{
@@ -86,6 +84,7 @@ const Contacts = () => {
 
   return (
     <div className="min-h-screen py-12 bg-gradient-to-br from-[#F1F0FB] to-[#D6BCFA] flex flex-col items-center">
+      <Navbar />
       <div className="flex justify-between items-center w-full max-w-2xl mb-4">
         <h1 className="text-4xl font-bold text-[#9b87f5]">Contacts</h1>
         <Button variant="default" onClick={() => setShowAdd(v => !v)}>
@@ -176,4 +175,3 @@ const Contacts = () => {
 };
 
 export default Contacts;
-

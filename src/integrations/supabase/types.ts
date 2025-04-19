@@ -39,6 +39,36 @@ export type Database = {
         }
         Relationships: []
       }
+      campaigns: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          end_date: string | null
+          id: string
+          name: string
+          start_date: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name: string
+          start_date?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name?: string
+          start_date?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       contacts: {
         Row: {
           account_id: string | null
@@ -79,6 +109,113 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      opportunities: {
+        Row: {
+          account_id: string | null
+          amount: number | null
+          close_date: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          stage: string | null
+          status: string | null
+        }
+        Insert: {
+          account_id?: string | null
+          amount?: number | null
+          close_date?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          stage?: string | null
+          status?: string | null
+        }
+        Update: {
+          account_id?: string | null
+          amount?: number | null
+          close_date?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          stage?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          role: string | null
+          team_id: string
+          user_id: string
+        }
+        Insert: {
+          role?: string | null
+          team_id: string
+          user_id: string
+        }
+        Update: {
+          role?: string | null
+          team_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teams: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      uploads: {
+        Row: {
+          created_at: string | null
+          file_name: string
+          id: string
+          table_target: string | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          file_name: string
+          id?: string
+          table_target?: string | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          file_name?: string
+          id?: string
+          table_target?: string | null
+          uploaded_by?: string | null
+        }
+        Relationships: []
       }
       waitlist: {
         Row: {

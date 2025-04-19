@@ -1,16 +1,9 @@
-import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
-type Team = {
-  id: string;
-  name: string;
-  created_at?: string;
-};
-
 const Teams = () => {
-  // This page can't show live data until the 'teams' table exists.
   return (
     <div className="min-h-screen py-12 bg-gradient-to-br from-[#F1F0FB] to-[#D6BCFA] flex flex-col items-center">
       <Navbar />

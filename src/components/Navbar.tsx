@@ -12,14 +12,16 @@ const Navbar = ({ user }: { user?: any }) => {
     navigate("/auth");
   };
 
+  // Use the new logo: the first uploaded asset
+  // Update the click to go to "/"
   return (
     <nav className="w-full bg-white border-b shadow-sm flex items-center justify-between px-6 py-3">
       <div className="flex items-center gap-6">
         <span
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/")}
           className="flex items-center gap-2 text-xl font-bold text-[#9b87f5] cursor-pointer"
         >
-          <img src="/lovable-uploads/8ae5233c-cc59-40e1-8e14-ae788063e95e.png" alt="company logo" className="w-8 h-8 rounded-full bg-[#1EAEDB]" />
+          <img src="/lovable-uploads/1ae9ff1a-68ce-4a72-8940-42efb3475359.png" alt="company logo" className="w-8 h-8 rounded-full bg-[#1EAEDB]" />
           zzenzzei
         </span>
         <div className="hidden md:flex gap-4 items-center">
@@ -50,6 +52,10 @@ const Navbar = ({ user }: { user?: any }) => {
           <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/settings" ? "text-[#9b87f5]" : ""}`}
             onClick={() => navigate("/settings")}>
             Settings
+          </button>
+          <button className={`hover:text-[#9b87f5] font-medium ${location.pathname === "/uploads" ? "text-[#9b87f5]" : ""}`}
+            onClick={() => navigate("/uploads")}>
+            Data Upload
           </button>
         </div>
       </div>

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,14 +7,13 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AuthPage from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
-
-// Import new pages
 import Contacts from "./pages/Contacts";
 import Opportunities from "./pages/Opportunities";
 import Campaigns from "./pages/Campaigns";
 import Teams from "./pages/Teams";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
+import Uploads from "./pages/Uploads";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +33,7 @@ const App = () => (
           <Route path="/teams" element={<Teams />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/uploads" element={<Uploads />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
