@@ -1,6 +1,8 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 type Campaign = {
   id: string;
@@ -33,3 +35,4 @@ const Campaigns = () => {
 };
 
 export default Campaigns;
+
