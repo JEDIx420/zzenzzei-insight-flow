@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { Upload, FileText, FileExcel, FileCsv } from "lucide-react";
+import { Upload, FileText, File } from "lucide-react"; // Fixed: use File instead of FileExcel/FileCsv
 
 const sampleColumns = [
   { name: "name", desc: "Name or title" },
@@ -76,7 +76,7 @@ const Uploads = () => {
           <span>Required columns: <span className="font-mono">name, email, amount, status, created_at</span></span>
         </div>
         <div className="bg-gray-50 p-2 rounded border w-full flex flex-col gap-1">
-          <div className="text-xs font-semibold mb-1">Sample column structure:</div>
+          <div className="text-xs font-semibold mb-1 flex items-center gap-1"><File className="inline-block text-[#7e69ab]" size={14}/>Sample column structure:</div>
           <ul className="text-xs list-disc list-inside ml-1 space-y-1">
             {sampleColumns.map(col => (
               <li key={col.name}>
